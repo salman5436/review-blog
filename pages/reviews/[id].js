@@ -1,5 +1,5 @@
 import Markdown from "react-markdown";
-import PageLayout from '../components/PageLayout'
+import PageLayout from '../../components/PageLayout'
 
 export const getServerSideProps = async function ({ params }) {
     const review = await prisma.post.findUnique({
