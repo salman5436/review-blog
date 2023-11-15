@@ -29,9 +29,14 @@ const Header = () => {
               Home
             </Link>
             {session && (
-              <Link href="/account" className="my-1 text-sm text-gray-700 hover:text-blue-500 md:mx-4 md:my-0"> 
-                Account
-              </Link>
+              <div>
+                <Link href="/account" className="my-1 text-sm text-gray-700 hover:text-blue-500 md:mx-4 md:my-0">
+                  Account
+                </Link>
+                <Link href="/create" className="my-1 text-sm text-gray-700 hover:text-blue-500 md:mx-4 md:my-0">
+                  Create Review
+                </Link>
+              </div>
             )}
           </div>
 
