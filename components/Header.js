@@ -3,7 +3,18 @@ import Link from "next/link";
 import { signIn, signOut, useSession } from "next-auth/react";
 
 const Header = () => {
-  const { data: session } = useSession();
+  // const { data: session } = useSession();
+  const { data: session, status } = useSession();
+
+
+  // console.log('Session:', session);
+  // console.log('Status:', status);
+
+  let googleSignin = function (e) {
+    e.preventDefault() 
+    signIn("google")
+  }
+
 
   return (
     <nav className="bg-white shadow">
@@ -53,7 +64,8 @@ const Header = () => {
               </>
             ) : (
               <button
-                onClick={() => signIn("google")}
+                // onClick={(e) => signIn("google")}
+                onClick={googleSignin}
                 className="mx-2 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
               >
                 Sign In

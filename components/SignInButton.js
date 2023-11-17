@@ -1,9 +1,10 @@
-import Link from 'next/link'
 import Image from 'next/image'
 import { useSession, signIn, signOut } from 'next-auth/react'
 
 const SignInButton = () => {
-  const { data: session } = useSession()
+  const { data: session, status } = useSession();
+
+
 
   return (
     <div>
