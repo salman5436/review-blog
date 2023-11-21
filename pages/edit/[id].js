@@ -9,7 +9,6 @@ export const getServerSideProps = async function ({ params }) {
     const review = await prisma.review.findUnique({
         where: { id: params.id },
     });
-    // console.log(review)
     return {
         props: { review: JSON.parse(JSON.stringify(review)) }, // Serialize the review data
     };
@@ -23,6 +22,7 @@ const EditReview = ({ review }) => {
     const router = useRouter()
 
     useEffect(() => {
+        //TODO:
         // Redirect to sign-in page if not authenticated
         // Implement authentication check here
     }, []);
@@ -38,7 +38,6 @@ const EditReview = ({ review }) => {
                 },
                 body: JSON.stringify(body)
             });
-            console.log(`Redirecting to /reviews/${review.id}`);
             router.push(`/reviews/${review.id}`);
         } catch (error) {
             console.error('An error occurred while updating the review:', error);

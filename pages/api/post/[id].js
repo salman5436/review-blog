@@ -13,7 +13,7 @@ export default async function handle(req, res) {
     }
 
     if (req.method === "PUT") {
-        const { title, content, published } = req.body //Want to better understand this part of the request
+        const { title, content, published } = req.body
         try {
             // Only allow updates to title and content; ensure published status is a boolean
             const review = await prisma.review.update({

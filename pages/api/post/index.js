@@ -9,8 +9,6 @@ export default async function handle(req, res) {
     const { title, content } = req.body
     const session = await getServerSession(req, res, authOptions)
 
-    // console.log('Session:', session);
-
     // Ensure a session exists (i.e., user is logged in)
     if (!session) {
         res.status(401).json({ message: "Not authenticated" });

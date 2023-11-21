@@ -17,7 +17,6 @@ export const getServerSideProps = async function ({ params }) {
             },
         },
     });
-    // console.log(review)
     return {
         props: review
     };
@@ -31,7 +30,7 @@ const Review = (props) => {
     if (status === "loading") {
         return <div>Authenticating ...</div>
     }
-    //!!!!HAVE TO CONFIGURE ANOTHER PRISMA MIGRATION TO CHANGE THIS TO AN EMAIL CHECK!!!:
+    //!!!! TO DO: HAVE TO CONFIGURE ANOTHER PRISMA MIGRATION TO CHANGE THIS TO AN EMAIL CHECK!!!:
     const authorCheck = session?.user?.name === props.author?.name
     // console.log(`The user is: ${session?.user?.name}`)
     // console.log(`The author is: ${props.author?.name}`)
@@ -59,7 +58,6 @@ const Review = (props) => {
                         {props.content}
                     </Markdown>
                 </div>
-                {/* Add any actions like edit or delete here */}
             </div>
             {/* if you're logged and the review belongs to you, spawn an edit button: */}
             {authorCheck && (

@@ -21,8 +21,6 @@ export const getStaticProps = async () => {
 
 
 const Blog = (props) => {
-  // console.log(props)
-
   return (
     <PageLayout>
       <div className="page">
