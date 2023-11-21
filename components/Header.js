@@ -3,12 +3,7 @@ import Link from "next/link";
 import { signIn, signOut, useSession } from "next-auth/react";
 
 const Header = () => {
-  // const { data: session } = useSession();
   const { data: session, status } = useSession();
-
-
-  // console.log('Session:', session);
-  // console.log('Status:', status);
 
   let googleSignin = function (e) {
     e.preventDefault() 
@@ -26,7 +21,7 @@ const Header = () => {
             </Link>
           </div>
 
-          {/* Mobile Menu open: "block", Menu closed: "hidden" */}
+          {/* TO DO: Mobile Menu open: "block", Menu closed: "hidden" */}
           <div className="flex md:hidden">
             <button type="button" className="text-gray-500 hover:text-gray-600 focus:outline-none focus:text-gray-600">
               {/* Icon for mobile menu */}
@@ -64,7 +59,6 @@ const Header = () => {
               </>
             ) : (
               <button
-                // onClick={(e) => signIn("google")}
                 onClick={googleSignin}
                 className="mx-2 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
               >

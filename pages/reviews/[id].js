@@ -1,8 +1,13 @@
 import Markdown from "react-markdown";
 import PageLayout from '../../components/PageLayout'
+import prisma from "../../lib/prisma";
+import { useSession } from "next-auth/react";
+import { useRouter } from 'next/router';
+
+
 
 export const getServerSideProps = async function ({ params }) {
-    const review = await prisma.post.findUnique({
+    const review = await prisma.review.findUnique({
         where: {
             id: String(params?.id)
         },
@@ -18,41 +23,53 @@ export const getServerSideProps = async function ({ params }) {
 };
 
 const Review = (props) => {
+    const router = useRouter();
+
+    //authenticating user for review actions:
+    const { data: session, status } = useSession()
+    if (status === "loading") {
+        return <div>Authenticating ...</div>
+    }
+    //!!!! TO DO: HAVE TO CONFIGURE ANOTHER PRISMA MIGRATION TO CHANGE THIS TO AN EMAIL CHECK!!!:
+    const authorCheck = session?.user?.name === props.author?.name
+    // console.log(`The user is: ${session?.user?.name}`)
+    // console.log(`The author is: ${props.author?.name}`)
+    // console.log(`The authorCheck shows: ${authorCheck}`)
+
+
     let title = props.title
     if (!props.published) {
         title = `${title} ~Draft~`
     }
 
+    const editReview = () => {
+        router.push(`/edit/${props.id}`);
+    };
+
     return (
         <PageLayout>
-            <div>
-                <h2>{title}</h2>
-                <p>By {props?.author?.name || "Anonymous"}</p>
-                <Markdown>
-                    {props.content}
-                </Markdown>
-                <style jsx>{`
-                    .page {
-                    background: white;
-                    padding: 2rem;
-                    }
-
-                    .actions {
-                    margin-top: 2rem;
-                    }
-
-                    button {
-                    background: #ececec;
-                    border: 0;
-                    border-radius: 0.125rem;
-                    padding: 1rem 2rem;
-                    }
-
-                    button + button {
-                    margin-left: 1rem;
-                    }
-                `}</style>
+            <div className="max-w-2xl mx-auto my-8 p-6 bg-white rounded-lg shadow-md overflow-hidden">
+                <h2 className="text-2xl font-bold text-gray-900 mb-3">{title}</h2>
+                <div className="text-gray-600 mb-4">
+                    <i>By {props?.author?.name || "Anonymous"}</i>
+                </div>
+                <div className="prose">
+                    <Markdown>
+                        {props.content}
+                    </Markdown>
+                </div>
             </div>
+            {/* if you're logged and the review belongs to you, spawn an edit button: */}
+            {authorCheck && (
+                <button
+                    className="max-w-2xl mx-auto my-8 p-6 bg-white rounded-lg shadow-md overflow-hidden"
+                    onClick={editReview}
+                >
+                    Edit Review
+                </button>
+            )}
+
+
         </PageLayout>
     )
 }
