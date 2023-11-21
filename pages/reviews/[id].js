@@ -46,6 +46,13 @@ const Review = (props) => {
         router.push(`/edit/${props.id}`);
     };
 
+    async function deleteReview(id) {
+        await fetch(`/api/post/${id}`, {
+            method: 'DELETE',
+        })
+        router.push('/')
+    }
+
     return (
         <PageLayout>
             <div className="max-w-2xl mx-auto my-8 p-6 bg-white rounded-lg shadow-md overflow-hidden">
@@ -66,6 +73,14 @@ const Review = (props) => {
                     onClick={editReview}
                 >
                     Edit Review
+                </button>
+            )}
+            {authorCheck && props.published && (
+                <button
+                    onClick={() => deleteReview(props.id)}
+                    className="max-w-2xl mx-auto my-8 p-6 rounded-lg shadow-md overflow-hidden bg-red-800"
+                >
+                    Delete Review
                 </button>
             )}
 
