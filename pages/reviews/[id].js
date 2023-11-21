@@ -43,6 +43,10 @@ const Review = (props) => {
         title = `${title} ~Draft~`
     }
 
+    const editReview = () => {
+        router.push(`/edit/${props.id}`);
+    };
+
     return (
         <PageLayout>
             <div className="max-w-2xl mx-auto my-8 p-6 bg-white rounded-lg shadow-md overflow-hidden">
@@ -61,8 +65,8 @@ const Review = (props) => {
             {authorCheck && (
                 <button
                     className="max-w-2xl mx-auto my-8 p-6 bg-white rounded-lg shadow-md overflow-hidden"
-                    onClick={router.push(`/edit/${props.id}`)}
-               >
+                    onClick={editReview}
+                >
                     Edit Review
                 </button>
             )}
