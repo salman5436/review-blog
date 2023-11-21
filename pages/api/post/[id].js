@@ -31,5 +31,18 @@ export default async function handle(req, res) {
             console.error("Error during database operation:", error);
             res.status(500).json({ message: "Failed to update review", error: error.message });
         }
+    } else if (req. method === "DELETE") {
+        try {
+            const review = await prisma.review.delete({
+                where: {
+                    id: reviewId
+                }
+            })
+            res.json(review)
+        } catch (error) {
+            res.status(500).json({ message: "Failed to delete review", error: error.message });
+        }
+    } else {
+        throw new Error(`The HTTP ${req.method} method is not supported at this route`)
     }
 }
