@@ -23,7 +23,8 @@ const Blog = (props) => {
   return (
     <PageLayout>
       <div className="page">
-        <h1>Public Feed</h1>
+        <h1 className="mb-10 text-3xl leading-none tracking-tight text-gray-900 md:text-4xl lg:text-5xl dark:text-black">Public Feed:</h1>
+
         <main>
           {props?.feed?.map((review) => (
             <div key={review.id} className="post">
