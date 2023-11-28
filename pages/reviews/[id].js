@@ -13,7 +13,7 @@ export const getServerSideProps = async function ({ params }) {
         },
         include: {
             author: {
-                select: { name: true },
+                select: { name: true, email: true },
             },
         },
     });
@@ -30,12 +30,8 @@ const Review = (props) => {
     if (status === "loading") {
         return <div>Authenticating ...</div>
     }
-    //!!!! TO DO: HAVE TO CONFIGURE ANOTHER PRISMA MIGRATION TO CHANGE THIS TO AN EMAIL CHECK!!!:
-    const authorCheck = session?.user?.name === props.author?.name
-    // console.log(`The user is: ${session?.user?.name}`)
-    // console.log(`The author is: ${props.author?.name}`)
-    // console.log(`The authorCheck shows: ${authorCheck}`)
-
+    //Adding the user email field into the prisma query above to run an auth check for delete and edit functions:
+    const authorCheck = session?.user?.email === props.author?.email
 
     let title = props.title
     if (!props.published) {
@@ -66,24 +62,25 @@ const Review = (props) => {
                     </Markdown>
                 </div>
             </div>
-            {/* if you're logged and the review belongs to you, spawn an edit button: */}
-            {authorCheck && (
-                <button
-                    className="max-w-2xl mx-auto my-8 p-6 bg-white rounded-lg shadow-md overflow-hidden"
-                    onClick={editReview}
-                >
-                    Edit Review
-                </button>
-            )}
-            {authorCheck && props.published && (
-                <button
-                    onClick={() => deleteReview(props.id)}
-                    className="max-w-2xl mx-auto my-8 p-6 rounded-lg shadow-md overflow-hidden bg-red-800"
-                >
-                    Delete Review
-                </button>
-            )}
-
+            <div className="flex">
+                {/* if you're logged and the review belongs to you, spawn an edit button: */}
+                {authorCheck && (
+                    <button
+                        className="max-w-2xl mx-auto my-8 p-6 bg-sky-700 rounded-lg shadow-md overflow-hidden"
+                        onClick={editReview}
+                    >
+                        Edit Review
+                    </button>
+                )}
+                {authorCheck && props.published && (
+                    <button
+                        onClick={() => deleteReview(props.id)}
+                        className="max-w-2xl mx-auto my-8 p-6 rounded-lg shadow-md overflow-hidden bg-red-600"
+                    >
+                        Delete Review
+                    </button>
+                )}
+            </div>
 
         </PageLayout>
     )
