@@ -1,34 +1,102 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Heart-y-Reviews
+
+## Overview
+
+Heart-y-Reviews is a full-stack Next.js application that allows users to create, view, edit, and delete reviews. It integrates NextAuth for authentication with a Google provider, Prisma as an ORM for PostgreSQL, and is deployed on Vercel.
+
+## Features
+
+- User authentication via Google (NextAuth)
+- Create, view, edit, and delete reviews
+- Draft and publish functionality for reviews
+- Mobile responsive design with a custom burger menu
+- Secure and scalable with Prisma and Vercel deployment
+
+## Visit This Project
+
+[Project Link](https://review-blog-phi.vercel.app/)  
 
 ## Getting Started
 
-First, run the development server:
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
-```bash
-npm run dev
-# or
-yarn dev
+### Prerequisites
+
+- Node.js
+- npm or yarn
+- PostgreSQL database
+
+### Installation
+
+1. Clone the repo:
+
+```sh
+   git clone https://github.com/salman5436/review-blog
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Install NPM Packages:
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+```sh
+   npm install
+```
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+3. Setup environment variables in a `.env.local` file at the root of your project:
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+```env
+NEXTAUTH_URL=http://localhost:3000
 
-## Learn More
+GOOGLE_CLIENT_ID=your_google_client_id
 
-To learn more about Next.js, take a look at the following resources:
+GOOGLE_CLIENT_SECRET=your_google_client_secret
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+DATABASE_URL=your_database_url
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+NEXTAUTH_SECRET=your_nextauth_secret
+```
 
-## Deploy on Vercel
+### Running Locally
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+To run the application locally:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+```sh
+   npm run dev
+```
+
+This will start the application in development mode on **http://localhost:3000**.
+
+## Deployment
+
+The application is configured for deployment on Vercel. Follow Vercel's documentation to deploy your Next.js application.
+
+## Built With
+
+- [Next.js](https://nextjs.org/) - The React framework
+- [NextAuth.js](https://next-auth.js.org/) - Authentican for Next.js
+- [Prisma & Prisma Client](https://www.prisma.io/) - Prisma ORM
+- [Postgres](https://vercel.com/docs/storage/vercel-postgres) - Vercel Postgres serverless SQL database that is integrated with Vercel
+- [Vercel](https://vercel.com/) - The React framework
+<!-- - []() -  -->
+
+## Contribution
+
+Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are greatly appreciated.
+
+1. Fork the Project
+2. Create your Feature Branch (git checkout -b feature/AmazingFeature)
+3. Commit your Changes (git commit -m 'Add some AmazingFeature')
+4. Push to the Branch (git push origin feature/AmazingFeature)
+5. Open a Pull Request
+
+## Next Steps
+
+Moving forward, the plan is to enhance the application with additional features such as:
+
+- Implementing advanced user roles and permissions.
+- Adding social media sharing options.
+- Integrating a more robust comment and rating system (including rating scale and categorization)
+- Improving the UI/UX for an even more engaging user experience
+- Exploring the integration of additional OAuth providers.
+
+## License
+
+Distributed under the MIT License. See LICENSE for more information.
