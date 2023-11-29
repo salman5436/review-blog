@@ -7,7 +7,7 @@ const PageLayout = ({ children }) => (
       {children}
     </main>
     <footer className="bg-white shadow mt-8 p-4 text-center text-sm text-gray-600">
-      © {new Date().getFullYear()} My Application. All rights reserved.
+      © {new Date().getFullYear()} Heart-y-Reviews. All rights reserved.
     </footer>
   </div>
 );
